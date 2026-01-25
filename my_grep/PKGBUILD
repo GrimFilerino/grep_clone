@@ -1,0 +1,13 @@
+pkgname=mygrep
+pkgver=1.0
+pkgrel=1
+pkgdesc="My custom grep implementation"
+arch=('x86_64')
+license=('MIT')
+depends=()
+source=("my_grep")
+sha256sums=("SKIP")
+
+package() {
+    install -Dm755 my_grep "$pkgdir/usr/bin/my_grep"
+}
