@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <regex.h>
 #include <dirent.h>
@@ -27,7 +28,8 @@ void dirs(char*pre_path, char* text, char* type) {
     DIR *dir = opendir(pre_path);
 
     if(dir == NULL){
-        return;
+        printf("Could not open directory to read files!");
+        exit(1);
     }
 
     while((de = readdir(dir)) != NULL){
@@ -121,7 +123,7 @@ int main(int argc, char** argv) {
     int index = 1;
 
     if(argc == 1) {
-        printf("No arguments inputed. Try --help");
+        printf("No arguments inputted. Try --help");
         return 1;
     }
 
@@ -133,7 +135,7 @@ int main(int argc, char** argv) {
         printf("--f     File names or file paths to search. If left out it looks at all files in current directory and sub directories! \n");
         printf("--t     The text to search for in file(s), must be a exact word seperated by spaces. Example, test(). \n");
         printf("--p     A pattern/regex to find pattern in a file. Value can be text or a regex. Example, main\( or \{. \n");
-        return 0;
+        exit(0);
     } else if(strcmp(argv[index],"--t") == 0) {
         char* text = argv[++index];
 
